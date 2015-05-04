@@ -80,7 +80,7 @@ Rational Rational::operator -(const Rational &rn2) const
 }
 
 ostream &operator<<(ostream &os, const Rational &rn){
-    long int i = 0, n = rn.numerator(), d = rn.denominator();
+    long int i = 0, n = rn.m_numerator, d = rn.m_denominator;
 
     /// division by zero handling
     if(0 == d){
@@ -95,14 +95,14 @@ ostream &operator<<(ostream &os, const Rational &rn){
         os << "(-";
     }
     /// extract the integer part
-    if(rn.numerator() > rn.denominator()){
+    if(rn.m_numerator > rn.m_denominator){
         i = n / d;
         n = n % d;
         os << i;
     }
     /// put the denominator if it's not zero or no integer extracted
     if( 0 != n ){
-        if(n != rn.numerator())
+        if(n != rn.m_numerator)
             os << ' '; /// add space between integer and numerator
         os << n;
     }
